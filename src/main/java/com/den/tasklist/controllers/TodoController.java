@@ -1,8 +1,10 @@
 package com.den.tasklist.controllers;
 
+import com.den.tasklist.models.Todo;
 import com.den.tasklist.repositories.TodoRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
@@ -22,4 +24,16 @@ public class TodoController {
                   "todo/list",
                   Map.of("todos", todoRepository.findAll()));
     }
+
+    @GetMapping("/create")
+    public ModelAndView create() {
+        return new ModelAndView("todo/form", Map.of("todo", new Todo()));
+    }
+
+    @PostMapping("/create")
+    public String create(Todo todo){
+     todoRepository.save(todo);
+     return "redirect:/";
+    }
+
 }
