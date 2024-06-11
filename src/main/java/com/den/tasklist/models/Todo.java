@@ -46,6 +46,10 @@ public class Todo {
         this.createdAt = LocalDateTime.now();
     }
 
+    public void markHasFinished(){
+        this.finishedAt = LocalDate.now();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
